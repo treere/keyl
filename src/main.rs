@@ -1,7 +1,8 @@
-
 mod input;
 
 mod balancer;
+
+mod stat;
 
 fn main() {
     let device = std::env::args().nth(1).expect("Missing device name");
@@ -10,10 +11,14 @@ fn main() {
 
     let mut kb = balancer::KeyBalancer::new();
 
+    let mut st = stat::KeyPressCounter::new();
 
-    loop {
+
+    for _ in 0..100 {
+
         if let Some(x) = kb.add(k.key()) {
-            println!("{:?}", x);
+            st.insert(x.code);
         }
     }
+    println!("{:?}", st);
 }
