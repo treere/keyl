@@ -25,6 +25,10 @@ impl KeyPressCounter {
             },
         };
     }
+
+    pub fn count_all(&self) -> usize {
+        self.counts.iter().map(|(_, v)| { *v }).sum()
+    }
 }
 
 #[cfg(test)]
@@ -63,6 +67,17 @@ mod key_press_counter_tests {
         assert_eq!(1, k.count(9));
         assert_eq!(2, k.count(19));
     }
+
+    #[test]
+    fn count_all() {
+        let mut k = KeyPressCounter::new();
+        k.insert(1);
+        k.insert(2);
+        k.insert(3);
+        k.insert(1);
+
+        assert_eq!(4, k.count_all());
+    }
 }
 
 #[derive(Debug)]
@@ -88,6 +103,10 @@ impl KeyEventCounter {
             2 => self.long.insert(k.code),
             _ => unimplemented!()
         }
+    }
+
+    pub fn count_all(&self) -> (usize, usize) {
+        (self.short.count_all(), self.long.count_all())
     }
 }
 
@@ -125,6 +144,16 @@ mod key_event_counter_tests {
         k.insert(KeyEvent { code: 42, value: 1 });
 
         assert_eq!((2, 1), k.count(42))
+    }
+
+    #[test]
+    fn count_all() {
+        let mut k = KeyEventCounter::new();
+        k.insert(KeyEvent { code: 42, value: 1 });
+        k.insert(KeyEvent { code: 41, value: 2 });
+        k.insert(KeyEvent { code: 40, value: 1 });
+
+        assert_eq!((2, 1), k.count_all())
     }
 }
 
