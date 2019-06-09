@@ -1,5 +1,6 @@
 #![feature(deadline_api)]
-use keyl::*;
+
+use keyllib::*;
 
 fn main() {
     let device = std::env::args().nth(1).expect("Missing device name");
