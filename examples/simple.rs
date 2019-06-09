@@ -31,6 +31,6 @@ fn main() {
             };
         }
         let (short, long) = st.count_all();
-        println!("short: {}\tlong: {}", short, long);
+        println!("{}: s {}\tl {}", chrono::Local::now().format("%Y-%m-%d %H:%M:%S").to_string(), short, long);
     }
 }
