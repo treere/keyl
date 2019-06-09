@@ -1,15 +1,19 @@
 use libc::{read, open, input_event, O_RDONLY, close};
 use std::ffi::CString;
 
+
 pub struct Keyboard {
     fd: i32,
     ev: input_event
 }
 
-#[derive(Debug)]
+pub type KeyCode = u16;
+pub type KeyValue = i32;
+
+#[derive(Debug, PartialEq, Clone)]
 pub struct KeyEvent {
-    code: u16,
-    value: i32
+    pub code: KeyCode,
+    pub value: KeyValue
 }
 
 impl Keyboard {
