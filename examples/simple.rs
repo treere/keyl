@@ -1,8 +1,4 @@
-mod input;
-
-mod balancer;
-
-mod stat;
+use keyl::*;
 
 fn main() {
     let device = std::env::args().nth(1).expect("Missing device name");
