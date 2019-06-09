@@ -11,13 +11,12 @@ fn main() {
 
     let mut kb = balancer::KeyBalancer::new();
 
-    let mut st = stat::KeyPressCounter::new();
+    let mut st = stat::KeyEventCounter::new();
 
 
     for _ in 0..100 {
-
         if let Some(x) = kb.add(k.key()) {
-            st.insert(x.code);
+            st.insert(x);
         }
     }
     println!("{:?}", st);
