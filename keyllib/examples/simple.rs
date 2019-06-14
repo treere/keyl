@@ -5,8 +5,6 @@ use keyllib::*;
 fn main() {
     let device = std::env::args().nth(1).expect("Missing device name");
 
-
-
     let (sx, rx) = std::sync::mpsc::channel();
 
     let mut k = input::Keyboard::new(device).expect("Cannot open input");

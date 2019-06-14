@@ -61,7 +61,7 @@ impl XKeyboard {
         XKeyboard { disp, xi_opcode }
     }
 
-    pub fn next_keycode(&mut self) -> i32 {
+    pub fn keycode(&mut self) -> i32 {
         loop {
             unsafe {
                 let mut event = ::std::mem::MaybeUninit::<XEvent>::zeroed().assume_init();
@@ -79,6 +79,14 @@ impl XKeyboard {
             }
         }
     }
+    pub fn keysym(&mut self) -> Option<u64> {
+        let k = self.keycode();
+        self.keycode2keysym(k)
+    }
+    pub fn keyname(&mut self) -> Option<&'static str> {
+        self.keysym().map(|x| self.keysym2keyname(x))
+    }
+
     pub fn keycode2keysym(&mut self, code: i32) -> Option<u64> {
         let s = unsafe { XkbKeycodeToKeysym(self.disp.disp, code as u8, 0, 0) };
         if s as u64 == NoSymbol as u64 {
@@ -87,7 +95,7 @@ impl XKeyboard {
         Some(s)
     }
 
-    pub fn keysym2str(&self, s: u64) -> &'static str {
+    pub fn keysym2keyname(&self, s: u64) -> &'static str {
         let c = unsafe { ::std::ffi::CStr::from_ptr(XKeysymToString(s)) };
         c.to_str().expect("Error in decoding str")
     }
