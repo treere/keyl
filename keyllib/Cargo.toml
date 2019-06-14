@@ -1,0 +1,8 @@
+[package]
+name = "keyllib"
+version = "0.1.0"
+authors = ["Andrea Tomasi <tomasiandrea.at@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+x11 = { version = "2.18.1", features = ["xlib", "xinput"] }

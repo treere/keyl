@@ -1,0 +1,8 @@
+[package]
+name = "keylx"
+version = "0.1.0"
+authors = ["Andrea Tomasi <tomasiandrea.at@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+keyllib = { path="../keyllib"}

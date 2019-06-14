@@ -1,0 +1,9 @@
+#!/bin/bash 
+# simple script to use a different file every day
+
+mkdir -p ~/.keyl || { echo "Cannot create dir"; exit 1; }
+
+while read line
+do 
+	echo "$line" >> ~/.keyl/$(date +"%Y%m%d"); 
+done < <( cargo +nightly run --bin keylx --release )
