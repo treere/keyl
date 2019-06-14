@@ -1,6 +1,6 @@
 #![feature(deadline_api)]
 
-use keylx::hardware::*;
+use keyllib::hardware::*;
 use std::collections::HashMap;
 use std::time::SystemTime;
 
