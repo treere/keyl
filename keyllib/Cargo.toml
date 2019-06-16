@@ -6,3 +6,5 @@ edition = "2018"
 
 [dependencies]
 x11 = { version = "2.18.1", features = ["xlib", "xinput"] }
+serde = "1.0.92"
+serde_json = "1.0.39"

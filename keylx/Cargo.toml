@@ -6,5 +6,3 @@ edition = "2018"
 
 [dependencies]
 keyllib = { path="../keyllib"}
-serde = "1.0.92"
-serde_json = "1.0.39"
