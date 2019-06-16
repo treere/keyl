@@ -6,3 +6,5 @@ edition = "2018"
 
 [dependencies]
 keyllib = { path="../keyllib"}
+clap = {version="2.33.0", default-features=false}
+

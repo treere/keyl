@@ -3,3 +3,8 @@
     "keyllib",
     "keylx"
  ]
+
+[profile.release]
+opt-level = 2
+lto = true
+panic = 'abort'
