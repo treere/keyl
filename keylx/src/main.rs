@@ -31,9 +31,6 @@ fn main() {
                 Err(_) => break,
             };
         }
-        let total = m.values().sum::<u32>();
-
-        m.insert("__total__", total);
 
         // after 2100?
         let time = SystemTime::now()
@@ -42,7 +39,7 @@ fn main() {
         m.insert("__time__", time);
         m.insert("__duration__", d.as_secs() as u32);
 
-        println!("{:?}", m);
+        println!("{}", serde_json::to_string(&m).expect("Cannot format json"));
         m.clear();
     }
 }
